@@ -5,3 +5,5 @@ tsconfig.json
 .gitignore
 .github
 .husky
+LICENSE.md
+README.md

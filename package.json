@@ -1,35 +1,37 @@
 {
-  "name": "exnode",
-  "version": "0.0.2",
-  "description": "",
-  "main": "./build/index.js",
-  "types": "./build/index.d.ts",
-  "files": [
-    "build/**/*"
-  ],
-  "scripts": {
-    "clean": "del-cli ./build/*",
-    "build": "npm run clean && tsc",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^7.0.2",
-    "@typescript-eslint/parser": "^7.0.2",
-    "del-cli": "^5.1.0",
-    "eslint": "^8.56.0",
-    "lint-staged": "^15.2.2",
-    "prettier": "^3.2.5",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/nabeel-ncz/exnode"
-  },
-  "engines": {
-    "node": ">= 18.0.0"
-  }
+	"name": "exnode",
+	"version": "0.0.2",
+	"description": "",
+	"main": "./build/index.js",
+	"types": "./build/index.d.ts",
+	"files": [
+		"build/**/*"
+	],
+	"scripts": {
+		"clean": "del-cli ./build/*",
+		"build": "npm run clean && tsc",
+		"lint": "eslint .",
+		"lint:fix": "eslint --fix .",
+		"format": "prettier --write .",
+		"pub:patch": "git add . && git commit -m \"Updates\" && npm version patch && npm run build && npm publish"
+	},
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^7.0.2",
+		"@typescript-eslint/parser": "^7.0.2",
+		"del-cli": "^5.1.0",
+		"eslint": "^8.56.0",
+		"lint-staged": "^15.2.2",
+		"prettier": "^3.2.5",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.3.3"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/nabeel-ncz/exnode"
+	},
+	"engines": {
+		"node": ">= 18.0.0"
+	}
 }

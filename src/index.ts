@@ -1,2 +1,2 @@
-import { Application } from "./core";
+import { Application } from './core';
 export default Application;

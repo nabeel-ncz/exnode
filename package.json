@@ -1,6 +1,6 @@
 {
-  "name": "roza",
-  "version": "1.0.0",
+  "name": "exnode",
+  "version": "0.0.1",
   "description": "",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nabeel-ncz/roza"
+    "url": "https://github.com/nabeel-ncz/exnode"
   },
   "engines": {
     "node": ">= 18.0.0"

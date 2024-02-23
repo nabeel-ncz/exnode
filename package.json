@@ -2,14 +2,20 @@
   "name": "roza",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "files": [
+    "build/**/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "del-cli ./build/*",
+    "build": "npm run clean && tsc"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "del-cli": "^5.1.0",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
   }
 }

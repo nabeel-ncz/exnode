@@ -1,28 +1,39 @@
 module.exports = {
-	env: {
-		es2021: true,
-		node: true,
-		jest: true
-	},
-	extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
-	parser: "@typescript-eslint/parser",
-	parserOptions: {
-		ecmaVersion: "latest",
-		sourceType: "module"
-	},
-	plugins: ["@typescript-eslint"],
-	rules: {
-		"@typescript-eslint/ban-types": "off",
-		"@typescript-eslint/no-explicit-any": "off",
-		"no-mixed-spaces-and-tabs": "off",
-		"@typescript-eslint/no-non-null-assertion": "off",
-		"@typescript-eslint/no-extra-semi": "off",
-		"@typescript-eslint/ban-ts-comment": "off",
-		"@typescript-eslint/no-namespace": "off",
-		"no-case-declarations": "off",
-		"no-extra-semi": "off",
-		"prefer-rest-params": "off",
-		"@typescript-eslint/no-unused-vars": "off"
-	},
-	ignorePatterns: ["example/*", "tests/**/*"]
-};
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "overrides": [
+        {
+            "env": {
+                "node": true
+            },
+            "files": [
+                ".eslintrc.{js,cjs}"
+            ],
+            "parserOptions": {
+                "sourceType": "script"
+            }
+        }
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "indent": ["error", 2],
+        "linebreak-style": ["error", "unix"],
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"],
+        "no-console": "off",
+        "no-unused-vars": "warn"
+    }
+}

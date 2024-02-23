@@ -4,7 +4,6 @@
 	"useTabs": true,
 	"printWidth": 100,
 	"singleQuote": false,
-	"trailingComma": "none",
-	"bracketSameLine": true,
-	"endOfLine": "lf"
+	"arrowParens": "always",
+	"bracketSameLine": true
 }

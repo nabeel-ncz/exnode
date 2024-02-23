@@ -26,10 +26,10 @@
     "typescript": "^5.3.3"
   },
   "repository": {
-		"type": "git",
-		"url": "https://github.com/prnv404/fastnet"
-	},
-	"engines": {
-		"node": ">= 19.0.0"
-	}
+    "type": "git",
+    "url": "https://github.com/nabeel-ncz/roza"
+  },
+  "engines": {
+    "node": ">= 18.0.0"
+  }
 }

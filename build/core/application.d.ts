@@ -1,9 +1,9 @@
 /// <reference types="node" />
 /// <reference types="node" />
 import { EventEmitter } from 'events';
-import { Request, Response } from '.';
+import { Request, Response } from '..';
 import * as http from 'http';
-export declare class Application extends EventEmitter {
+export default class Application extends EventEmitter {
     private _middleware;
     private _request;
     private _response;

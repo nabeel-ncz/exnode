@@ -1,8 +1,9 @@
-import { EventEmitter } from 'events';
-import { Request, Response } from '..';
 import * as http from 'http';
+import Request from './request';
+import Response from './response';
+import { EventEmitter } from 'events';
 
-export default class Application extends EventEmitter {
+class Application extends EventEmitter {
   private _middleware: {
 		path: string;
 		method: string;
@@ -95,3 +96,5 @@ export default class Application extends EventEmitter {
     this._middleware.push({ path, method: 'PATCH', callback });
   }
 }
+
+export default Application;

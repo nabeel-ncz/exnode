@@ -22,25 +22,20 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const events_1 = require("events");
-const __1 = require("..");
 const http = __importStar(require("http"));
+const request_1 = __importDefault(require("./request"));
+const response_1 = __importDefault(require("./response"));
+const events_1 = require("events");
 class Application extends events_1.EventEmitter {
     constructor(options) {
         super();
         this._middleware = [];
-        this._request = new __1.Request();
-        this._response = new __1.Response();
+        this._request = new request_1.default();
+        this._response = new response_1.default();
     }
     use(...args) {
         let path = '';
@@ -64,39 +59,35 @@ class Application extends events_1.EventEmitter {
         const server = http.createServer(this.handleRequest.bind(this));
         return server.listen(...args);
     }
-    handleRequest(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                this._request = new __1.Request(req);
-                this._response = new __1.Response(res);
-                yield this.processMiddleware(0);
-            }
-            catch (error) {
-                console.error('Error handling request:', error);
-                res.statusCode = 500;
-                res.end('Internal Server Error');
-            }
-        });
+    async handleRequest(req, res) {
+        try {
+            this._request = new request_1.default(req);
+            this._response = new response_1.default(res);
+            await this.processMiddleware(0);
+        }
+        catch (error) {
+            console.error('Error handling request:', error);
+            res.statusCode = 500;
+            res.end('Internal Server Error');
+        }
     }
-    processMiddleware(index) {
+    async processMiddleware(index) {
         var _a;
-        return __awaiter(this, void 0, void 0, function* () {
-            const { _middleware, _request, _response } = this;
-            const currentLayer = _middleware[index];
-            const next = () => this.processMiddleware(index + 1);
-            if (!currentLayer) {
-                return;
-            }
-            const { path, method, callback } = currentLayer;
-            const url = (_a = _request.url) === null || _a === void 0 ? void 0 : _a.split('?')[0];
-            const requestMethod = _request.method.toLowerCase();
-            if ((!path || url === path) && (!method || method.toLowerCase() === requestMethod)) {
-                yield callback(_request, _response, next);
-            }
-            else {
-                yield next();
-            }
-        });
+        const { _middleware, _request, _response } = this;
+        const currentLayer = _middleware[index];
+        const next = () => this.processMiddleware(index + 1);
+        if (!currentLayer) {
+            return;
+        }
+        const { path, method, callback } = currentLayer;
+        const url = (_a = _request.url) === null || _a === void 0 ? void 0 : _a.split('?')[0];
+        const requestMethod = _request.method.toLowerCase();
+        if ((!path || url === path) && (!method || method.toLowerCase() === requestMethod)) {
+            await callback(_request, _response, next);
+        }
+        else {
+            await next();
+        }
     }
     get(path, callback) {
         this._middleware.push({ path, method: 'GET', callback });

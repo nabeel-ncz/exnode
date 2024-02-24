@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Request = void 0;
 const url_1 = require("url");
 class Request {
     constructor(req) {
@@ -58,4 +57,4 @@ class Request {
         this._params = obj;
     }
 }
-exports.Request = Request;
+exports.default = Request;

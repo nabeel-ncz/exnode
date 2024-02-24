@@ -1,7 +1,7 @@
 import { IncomingMessage } from 'http';
 import { URL } from 'url';
 
-export class Request {
+class Request {
   private _req: IncomingMessage;
   private _url: URL;
   private _params: any;
@@ -73,3 +73,4 @@ export class Request {
     this._params = obj;
   }
 }
+export default Request;

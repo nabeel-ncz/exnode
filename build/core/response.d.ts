@@ -1,7 +1,7 @@
 /// <reference types="node" />
 /// <reference types="node" />
 import { ServerResponse } from 'http';
-export declare class Response {
+declare class Response {
     private _res;
     constructor(res?: ServerResponse);
     get socket(): import("net").Socket | null;
@@ -15,3 +15,4 @@ export declare class Response {
     redirect(url: string, statusCode?: number): void;
     sendStatus(statusCode: number): void;
 }
+export default Response;

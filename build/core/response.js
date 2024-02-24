@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Response = void 0;
 class Response {
     constructor(res) {
         this._res = res;
@@ -58,4 +57,4 @@ class Response {
         this._res.end();
     }
 }
-exports.Response = Response;
+exports.default = Response;

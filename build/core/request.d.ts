@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import { IncomingMessage } from 'http';
-export declare class Request {
+declare class Request {
     private _req;
     private _url;
     private _params;
@@ -18,3 +18,4 @@ export declare class Request {
     get params(): any;
     set params(obj: any);
 }
+export default Request;

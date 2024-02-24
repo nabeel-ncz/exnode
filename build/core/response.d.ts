@@ -1,6 +1,6 @@
 /// <reference types="node" />
 /// <reference types="node" />
-import { ServerResponse } from 'http';
+import { ServerResponse } from "http";
 declare class Response {
     private _res;
     constructor(res?: ServerResponse);

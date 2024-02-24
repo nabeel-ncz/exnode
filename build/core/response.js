@@ -18,12 +18,12 @@ class Response {
     }
     send(data) {
         switch (typeof data) {
-            case 'object':
-                this.setHeader('Content-Type', 'application/json');
+            case "object":
+                this.setHeader("Content-Type", "application/json");
                 this._res.write(JSON.stringify(data));
                 break;
-            case 'string':
-                this.setHeader('Content-Type', 'text/plain');
+            case "string":
+                this.setHeader("Content-Type", "text/plain");
                 this._res.write(data);
                 break;
             default:
@@ -32,22 +32,22 @@ class Response {
         this._res.end();
     }
     json(data) {
-        this.setHeader('Content-Type', 'application/json');
+        this.setHeader("Content-Type", "application/json");
         this._res.write(JSON.stringify(data));
         this._res.end();
     }
     text(data) {
-        this.setHeader('Content-Type', 'text/plain');
+        this.setHeader("Content-Type", "text/plain");
         this._res.write(data);
         this._res.end();
     }
     html(data) {
-        this.setHeader('Content-Type', 'text/html');
+        this.setHeader("Content-Type", "text/html");
         this._res.write(data);
         this._res.end();
     }
     redirect(url, statusCode = 302) {
-        this.setHeader('Location', url);
+        this.setHeader("Location", url);
         this.status = statusCode;
         this._res.end();
     }

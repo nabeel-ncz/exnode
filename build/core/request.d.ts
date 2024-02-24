@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import { IncomingMessage } from 'http';
+import { IncomingMessage } from "http";
 declare class Request {
     private _req;
     private _url;

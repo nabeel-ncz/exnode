@@ -34,11 +34,11 @@ class Application extends events_1.EventEmitter {
     constructor(options) {
         super();
         this._middleware = [];
-        this._request = new request_1.default();
-        this._response = new response_1.default();
+        this._request = Object.create(request_1.default);
+        this._response = Object.create(response_1.default);
     }
     use(...args) {
-        let path = '';
+        let path = "";
         let callback;
         if (args.length === 1) {
             callback = args[0];
@@ -48,12 +48,12 @@ class Application extends events_1.EventEmitter {
             callback = args[1];
         }
         else {
-            throw new Error('Invalid arguments for \'use\' method');
+            throw new Error("Invalid arguments for 'use' method");
         }
-        if (typeof callback !== 'function') {
-            throw new TypeError('Middleware function must be a function');
+        if (typeof callback !== "function") {
+            throw new TypeError("Middleware function must be a function");
         }
-        this._middleware.push({ path, method: '', callback });
+        this._middleware.push({ path, method: "", callback });
     }
     listen(...args) {
         const server = http.createServer(this.handleRequest.bind(this));
@@ -66,9 +66,9 @@ class Application extends events_1.EventEmitter {
             await this.processMiddleware(0);
         }
         catch (error) {
-            console.error('Error handling request:', error);
+            console.error("Error handling request:", error);
             res.statusCode = 500;
-            res.end('Internal Server Error');
+            res.end("Internal Server Error");
         }
     }
     async processMiddleware(index) {
@@ -79,7 +79,7 @@ class Application extends events_1.EventEmitter {
             return;
         }
         const { path, method, callback } = currentLayer;
-        const url = _request.url?.split('?')[0];
+        const url = _request.url?.split("?")[0];
         const requestMethod = _request.method.toLowerCase();
         if ((!path || url === path) && (!method || method.toLowerCase() === requestMethod)) {
             await callback(_request, _response, next);
@@ -89,19 +89,19 @@ class Application extends events_1.EventEmitter {
         }
     }
     get(path, callback) {
-        this._middleware.push({ path, method: 'GET', callback });
+        this._middleware.push({ path, method: "GET", callback });
     }
     post(path, callback) {
-        this._middleware.push({ path, method: 'POST', callback });
+        this._middleware.push({ path, method: "POST", callback });
     }
     put(path, callback) {
-        this._middleware.push({ path, method: 'PUT', callback });
+        this._middleware.push({ path, method: "PUT", callback });
     }
     delete(path, callback) {
-        this._middleware.push({ path, method: 'DELETE', callback });
+        this._middleware.push({ path, method: "DELETE", callback });
     }
     patch(path, callback) {
-        this._middleware.push({ path, method: 'PATCH', callback });
+        this._middleware.push({ path, method: "PATCH", callback });
     }
 }
 exports.default = Application;

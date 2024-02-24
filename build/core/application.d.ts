@@ -1,9 +1,9 @@
 /// <reference types="node" />
 /// <reference types="node" />
-import * as http from 'http';
-import Request from './request';
-import Response from './response';
-import { EventEmitter } from 'events';
+import * as http from "http";
+import Request from "./request";
+import Response from "./response";
+import { EventEmitter } from "events";
 declare class Application extends EventEmitter {
     private _middleware;
     private _request;

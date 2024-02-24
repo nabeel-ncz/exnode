@@ -4,7 +4,7 @@ import { ServerResponse } from 'http';
 declare class Response {
     private _res;
     constructor(res?: ServerResponse);
-    get socket(): import("net").Socket | null;
+    get socket(): import("net").Socket;
     get status(): number;
     set status(code: number);
     setHeader(name: string, value: string | string[]): void;
@@ -16,3 +16,4 @@ declare class Response {
     sendStatus(statusCode: number): void;
 }
 export default Response;
+//# sourceMappingURL=response.d.ts.map

@@ -72,7 +72,6 @@ class Application extends events_1.EventEmitter {
         }
     }
     async processMiddleware(index) {
-        var _a;
         const { _middleware, _request, _response } = this;
         const currentLayer = _middleware[index];
         const next = () => this.processMiddleware(index + 1);
@@ -80,7 +79,7 @@ class Application extends events_1.EventEmitter {
             return;
         }
         const { path, method, callback } = currentLayer;
-        const url = (_a = _request.url) === null || _a === void 0 ? void 0 : _a.split('?')[0];
+        const url = _request.url?.split('?')[0];
         const requestMethod = _request.method.toLowerCase();
         if ((!path || url === path) && (!method || method.toLowerCase() === requestMethod)) {
             await callback(_request, _response, next);

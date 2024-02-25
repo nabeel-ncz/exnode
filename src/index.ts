@@ -1,3 +1,2 @@
-import Application from "./core/application";
-export { Application };
-export default Application;
+import { exnode } from "./core/application";
+export { exnode as default, exnode };

@@ -6,8 +6,8 @@ class Request {
 	private _url: URL;
 	private _params: any;
 
-	constructor(req?: IncomingMessage) {
-		this._req = req!;
+	constructor(req: IncomingMessage) {
+		this._req = req;
 		this._url = req ? new URL(`http://${req.headers.host}${req.url}`) : new URL("");
 		this._params = {};
 	}
@@ -20,8 +20,12 @@ class Request {
 		this._req.headers = val;
 	}
 
-	get url() {
-		return this._req.url;
+	get url(): string {
+		return this._req.url ?? "";
+	}
+
+	get method(): string{
+		return this._req.method ?? "";
 	}
 
 	set method(val: string) {

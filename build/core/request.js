@@ -14,7 +14,12 @@ class Request {
         this._req.headers = val;
     }
     get url() {
-        return this._req.url;
+        var _a;
+        return (_a = this._req.url) !== null && _a !== void 0 ? _a : "";
+    }
+    get method() {
+        var _a;
+        return (_a = this._req.method) !== null && _a !== void 0 ? _a : "";
     }
     set method(val) {
         if (typeof val === "string") {

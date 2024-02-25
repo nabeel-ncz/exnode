@@ -4,10 +4,11 @@ declare class Request {
     private _req;
     private _url;
     private _params;
-    constructor(req?: IncomingMessage);
+    constructor(req: IncomingMessage);
     get headers(): import("http").IncomingHttpHeaders;
     set headers(val: import("http").IncomingHttpHeaders);
-    get url(): string | undefined;
+    get url(): string;
+    get method(): string;
     set method(val: string);
     get body(): Promise<any>;
     get path(): string;

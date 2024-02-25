@@ -46,17 +46,14 @@ class Application extends events_1.EventEmitter {
         this._middleware = [];
         this._request = Object.create(request_1.default);
         this._response = Object.create(response_1.default);
-        console.log('\x1b[34;2m%s\x1b[0m', `
-		▓█████ ▒██   ██▒ ███▄    █  ▒█████  ▓█████▄ ▓█████ 
-		▓█   ▀ ▒▒ █ █ ▒░ ██ ▀█   █ ▒██▒  ██▒▒██▀ ██▌▓█   ▀ 
-		▒███   ░░  █   ░▓██  ▀█ ██▒▒██░  ██▒░██   █▌▒███   
-		▒▓█  ▄  ░ █ █ ▒ ▓██▒  ▐▌██▒▒██   ██░░▓█▄   ▌▒▓█  ▄ 
-		░▒████▒▒██▒ ▒██▒▒██░   ▓██░░ ████▓▒░░▒████▓ ░▒████▒
-		░░ ▒░ ░▒▒ ░ ░▓ ░░ ▒░   ▒ ▒ ░ ▒░▒░▒░  ▒▒▓  ▒ ░░ ▒░ ░
-		 ░ ░  ░░░   ░▒ ░░ ░░   ░ ▒░  ░ ▒ ▒░  ░ ▒  ▒  ░ ░  ░
-		   ░    ░    ░     ░   ░ ░ ░ ░ ░ ▒   ░ ░  ░    ░   
-		   ░  ░ ░    ░           ░     ░ ░     ░       ░  ░
-		`);
+        console.log('\x1b[34;2m%s\x1b[0m', `▓█████ ▒██   ██▒ ███▄    █  ▒█████  ▓█████▄ ▓█████ `);
+        console.log('\x1b[34;2m%s\x1b[0m', `▓█   ▀ ▒▒██ ██▒░ ██ ▀█   █ ▒██▒  ██▒▒██▀ ██▌▓█   ▀ `);
+        console.log('\x1b[34;2m%s\x1b[0m', `▒███   ░░  █   ░▓██  ▀█ ██▒▒██░  ██▒░██   █▌▒███   `);
+        console.log('\x1b[34;2m%s\x1b[0m', `▒▓█  ▄  ░██ ██▒ ▓██▒  ▐▌██▒▒██   ██░░▓█▄ ██▌▒▓█  ▄ `);
+        console.log('\x1b[34;2m%s\x1b[0m', `░▒████▒▒██▒ ▒██▒▒██░   ▓██░░ ████▓▒░░█████▓ ░█████▒`);
+        console.log('\x1b[34;2m%s\x1b[0m', `░░ ▒░ ░▒▒ ░ ░▓ ░░ ▒░   ▒ ▒ ░ ▒░▒░▒░  ▒▒▓  ▒ ░░ ▒░ ░`);
+        console.log('\x1b[34;2m%s\x1b[0m', ` ░ ░  ░░░   ░▒ ░░ ░░   ░ ▒░  ░ ▒ ▒░  ░ ▒  ▒  ░ ░  ░`);
+        console.log('\x1b[34;2m%s\x1b[0m', ` ░    ░    ░     ░   ░ ░ ░ ░ ░ ▒   ░ ░  ░    ░    `);
     }
     use(...args) {
         let path = "";
@@ -71,7 +68,7 @@ class Application extends events_1.EventEmitter {
         else {
             throw new Error("Invalid arguments for 'use' method");
         }
-        if (typeof path !== "string") {
+        if (path && typeof path !== "string") {
             throw new TypeError("Path must be a string");
         }
         if (typeof callback !== "function") {
@@ -119,18 +116,23 @@ class Application extends events_1.EventEmitter {
     }
     get(path, callback) {
         this._middleware.push({ path, method: "GET", callback });
+        this.processMiddleware(0);
     }
     post(path, callback) {
         this._middleware.push({ path, method: "POST", callback });
+        this.processMiddleware(0);
     }
     put(path, callback) {
         this._middleware.push({ path, method: "PUT", callback });
+        this.processMiddleware(0);
     }
     delete(path, callback) {
         this._middleware.push({ path, method: "DELETE", callback });
+        this.processMiddleware(0);
     }
     patch(path, callback) {
         this._middleware.push({ path, method: "PATCH", callback });
+        this.processMiddleware(0);
     }
 }
 exports.exnode = Application;

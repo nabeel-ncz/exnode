@@ -17,17 +17,14 @@ class Application extends EventEmitter {
 		this._middleware = [];
 		this._request = Object.create(Request);
 		this._response = Object.create(Response);
-		console.log('\x1b[34;2m%s\x1b[0m',`
-		▓█████ ▒██   ██▒ ███▄    █  ▒█████  ▓█████▄ ▓█████ 
-		▓█   ▀ ▒▒ █ █ ▒░ ██ ▀█   █ ▒██▒  ██▒▒██▀ ██▌▓█   ▀ 
-		▒███   ░░  █   ░▓██  ▀█ ██▒▒██░  ██▒░██   █▌▒███   
-		▒▓█  ▄  ░ █ █ ▒ ▓██▒  ▐▌██▒▒██   ██░░▓█▄   ▌▒▓█  ▄ 
-		░▒████▒▒██▒ ▒██▒▒██░   ▓██░░ ████▓▒░░▒████▓ ░▒████▒
-		░░ ▒░ ░▒▒ ░ ░▓ ░░ ▒░   ▒ ▒ ░ ▒░▒░▒░  ▒▒▓  ▒ ░░ ▒░ ░
-		 ░ ░  ░░░   ░▒ ░░ ░░   ░ ▒░  ░ ▒ ▒░  ░ ▒  ▒  ░ ░  ░
-		   ░    ░    ░     ░   ░ ░ ░ ░ ░ ▒   ░ ░  ░    ░   
-		   ░  ░ ░    ░           ░     ░ ░     ░       ░  ░
-		`);
+		console.log('\x1b[34;2m%s\x1b[0m', `▓█████ ▒██   ██▒ ███▄    █  ▒█████  ▓█████▄ ▓█████ `);
+		console.log('\x1b[34;2m%s\x1b[0m', `▓█   ▀ ▒▒██ ██▒░ ██ ▀█   █ ▒██▒  ██▒▒██▀ ██▌▓█   ▀ `);
+		console.log('\x1b[34;2m%s\x1b[0m', `▒███   ░░  █   ░▓██  ▀█ ██▒▒██░  ██▒░██   █▌▒███   `);
+		console.log('\x1b[34;2m%s\x1b[0m', `▒▓█  ▄  ░██ ██▒ ▓██▒  ▐▌██▒▒██   ██░░▓█▄ ██▌▒▓█  ▄ `);
+		console.log('\x1b[34;2m%s\x1b[0m', `░▒████▒▒██▒ ▒██▒▒██░   ▓██░░ ████▓▒░░█████▓ ░█████▒`);
+		console.log('\x1b[34;2m%s\x1b[0m', `░░ ▒░ ░▒▒ ░ ░▓ ░░ ▒░   ▒ ▒ ░ ▒░▒░▒░  ▒▒▓  ▒ ░░ ▒░ ░`);
+		console.log('\x1b[34;2m%s\x1b[0m', ` ░ ░  ░░░   ░▒ ░░ ░░   ░ ▒░  ░ ▒ ▒░  ░ ▒  ▒  ░ ░  ░`);
+		console.log('\x1b[34;2m%s\x1b[0m', ` ░    ░    ░     ░   ░ ░ ░ ░ ░ ▒   ░ ░  ░    ░    `);
 	}
 
 	use(...args: any[]): void {
@@ -43,7 +40,7 @@ class Application extends EventEmitter {
 			throw new Error("Invalid arguments for 'use' method");
 		}
 
-		if(typeof path !== "string"){
+		if (path && typeof path !== "string") {
 			throw new TypeError("Path must be a string");
 		}
 
@@ -96,22 +93,27 @@ class Application extends EventEmitter {
 
 	get(path: string, callback: (req: Request, res: Response) => Promise<void> | void): void {
 		this._middleware.push({ path, method: "GET", callback });
+		this.processMiddleware(0);
 	}
 
 	post(path: string, callback: (req: Request, res: Response) => Promise<void> | void): void {
 		this._middleware.push({ path, method: "POST", callback });
+		this.processMiddleware(0);
 	}
 
 	put(path: string, callback: (req: Request, res: Response) => Promise<void> | void): void {
 		this._middleware.push({ path, method: "PUT", callback });
+		this.processMiddleware(0);
 	}
 
 	delete(path: string, callback: (req: Request, res: Response) => Promise<void> | void): void {
 		this._middleware.push({ path, method: "DELETE", callback });
+		this.processMiddleware(0);
 	}
 
 	patch(path: string, callback: (req: Request, res: Response) => Promise<void> | void): void {
 		this._middleware.push({ path, method: "PATCH", callback });
+		this.processMiddleware(0);
 	}
 }
 

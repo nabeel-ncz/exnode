@@ -13,11 +13,10 @@ declare class Application extends EventEmitter {
     listen(...args: any[]): http.Server;
     private handleRequest;
     private processMiddleware;
-    get(path: string, callback: (req: Request, res: Response) => Promise<void>): void;
-    post(path: string, callback: (req: Request, res: Response) => Promise<void>): void;
-    put(path: string, callback: (req: Request, res: Response) => Promise<void>): void;
-    delete(path: string, callback: (req: Request, res: Response) => Promise<void>): void;
-    patch(path: string, callback: (req: Request, res: Response) => Promise<void>): void;
+    get(path: string, callback: (req: Request, res: Response) => Promise<void> | void): void;
+    post(path: string, callback: (req: Request, res: Response) => Promise<void> | void): void;
+    put(path: string, callback: (req: Request, res: Response) => Promise<void> | void): void;
+    delete(path: string, callback: (req: Request, res: Response) => Promise<void> | void): void;
+    patch(path: string, callback: (req: Request, res: Response) => Promise<void> | void): void;
 }
-export { Application };
-export default Application;
+export { Application as exnode };

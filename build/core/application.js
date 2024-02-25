@@ -35,7 +35,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Application = void 0;
+exports.exnode = void 0;
 const http = __importStar(require("http"));
 const request_1 = __importDefault(require("./request"));
 const response_1 = __importDefault(require("./response"));
@@ -46,6 +46,17 @@ class Application extends events_1.EventEmitter {
         this._middleware = [];
         this._request = Object.create(request_1.default);
         this._response = Object.create(response_1.default);
+        console.log('\x1b[34;2m%s\x1b[0m', `
+		▓█████ ▒██   ██▒ ███▄    █  ▒█████  ▓█████▄ ▓█████ 
+		▓█   ▀ ▒▒ █ █ ▒░ ██ ▀█   █ ▒██▒  ██▒▒██▀ ██▌▓█   ▀ 
+		▒███   ░░  █   ░▓██  ▀█ ██▒▒██░  ██▒░██   █▌▒███   
+		▒▓█  ▄  ░ █ █ ▒ ▓██▒  ▐▌██▒▒██   ██░░▓█▄   ▌▒▓█  ▄ 
+		░▒████▒▒██▒ ▒██▒▒██░   ▓██░░ ████▓▒░░▒████▓ ░▒████▒
+		░░ ▒░ ░▒▒ ░ ░▓ ░░ ▒░   ▒ ▒ ░ ▒░▒░▒░  ▒▒▓  ▒ ░░ ▒░ ░
+		 ░ ░  ░░░   ░▒ ░░ ░░   ░ ▒░  ░ ▒ ▒░  ░ ▒  ▒  ░ ░  ░
+		   ░    ░    ░     ░   ░ ░ ░ ░ ░ ▒   ░ ░  ░    ░   
+		   ░  ░ ░    ░           ░     ░ ░     ░       ░  ░
+		`);
     }
     use(...args) {
         let path = "";
@@ -60,8 +71,11 @@ class Application extends events_1.EventEmitter {
         else {
             throw new Error("Invalid arguments for 'use' method");
         }
+        if (typeof path !== "string") {
+            throw new TypeError("Path must be a string");
+        }
         if (typeof callback !== "function") {
-            throw new TypeError("Middleware function must be a function");
+            throw new TypeError("Middleware must be a function");
         }
         this._middleware.push({ path, method: "", callback });
     }
@@ -84,7 +98,7 @@ class Application extends events_1.EventEmitter {
         });
     }
     processMiddleware(index) {
-        var _a;
+        var _a, _b;
         return __awaiter(this, void 0, void 0, function* () {
             const { _middleware, _request, _response } = this;
             const currentLayer = _middleware[index];
@@ -94,8 +108,8 @@ class Application extends events_1.EventEmitter {
             }
             const { path, method, callback } = currentLayer;
             const url = (_a = _request.url) === null || _a === void 0 ? void 0 : _a.split("?")[0];
-            const requestMethod = _request.method.toLowerCase();
-            if ((!path || url === path) && (!method || method.toLowerCase() === requestMethod)) {
+            const requestMethod = (_b = _request.method) === null || _b === void 0 ? void 0 : _b.toLowerCase();
+            if ((!path || url === path) && (!method || (method === null || method === void 0 ? void 0 : method.toLowerCase()) === requestMethod)) {
                 yield callback(_request, _response, next);
             }
             else {
@@ -119,5 +133,4 @@ class Application extends events_1.EventEmitter {
         this._middleware.push({ path, method: "PATCH", callback });
     }
 }
-exports.Application = Application;
-exports.default = Application;
+exports.exnode = Application;

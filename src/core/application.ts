@@ -43,8 +43,12 @@ class Application extends EventEmitter {
 			throw new Error("Invalid arguments for 'use' method");
 		}
 
+		if(typeof path !== "string"){
+			throw new TypeError("Path must be a string");
+		}
+
 		if (typeof callback !== "function") {
-			throw new TypeError("Middleware function must be a function");
+			throw new TypeError("Middleware must be a function");
 		}
 
 		this._middleware.push({ path, method: "", callback });
@@ -81,35 +85,34 @@ class Application extends EventEmitter {
 
 		const { path, method, callback } = currentLayer;
 		const url = _request.url?.split("?")[0];
-		const requestMethod = _request.method.toLowerCase();
+		const requestMethod = _request.method?.toLowerCase();
 
-		if ((!path || url === path) && (!method || method.toLowerCase() === requestMethod)) {
+		if ((!path || url === path) && (!method || method?.toLowerCase() === requestMethod)) {
 			await callback(_request, _response, next);
 		} else {
 			await next();
 		}
 	}
 
-	get(path: string, callback: (req: Request, res: Response) => Promise<void>): void {
+	get(path: string, callback: (req: Request, res: Response) => Promise<void> | void): void {
 		this._middleware.push({ path, method: "GET", callback });
 	}
 
-	post(path: string, callback: (req: Request, res: Response) => Promise<void>): void {
+	post(path: string, callback: (req: Request, res: Response) => Promise<void> | void): void {
 		this._middleware.push({ path, method: "POST", callback });
 	}
 
-	put(path: string, callback: (req: Request, res: Response) => Promise<void>): void {
+	put(path: string, callback: (req: Request, res: Response) => Promise<void> | void): void {
 		this._middleware.push({ path, method: "PUT", callback });
 	}
 
-	delete(path: string, callback: (req: Request, res: Response) => Promise<void>): void {
+	delete(path: string, callback: (req: Request, res: Response) => Promise<void> | void): void {
 		this._middleware.push({ path, method: "DELETE", callback });
 	}
 
-	patch(path: string, callback: (req: Request, res: Response) => Promise<void>): void {
+	patch(path: string, callback: (req: Request, res: Response) => Promise<void> | void): void {
 		this._middleware.push({ path, method: "PATCH", callback });
 	}
 }
 
-export { Application };
-export default Application;
+export { Application as exnode };

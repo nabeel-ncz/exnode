@@ -1,9 +1,6 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Application = void 0;
-const application_1 = __importDefault(require("./core/application"));
-exports.Application = application_1.default;
-exports.default = application_1.default;
+exports.exnode = exports.default = void 0;
+const application_1 = require("./core/application");
+Object.defineProperty(exports, "default", { enumerable: true, get: function () { return application_1.exnode; } });
+Object.defineProperty(exports, "exnode", { enumerable: true, get: function () { return application_1.exnode; } });

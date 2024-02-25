@@ -91,29 +91,39 @@ class Application extends EventEmitter {
 		}
 	}
 
-	get(path: string, callback: (req: Request, res: Response) => Promise<void> | void): void {
-		this._middleware.push({ path, method: "GET", callback });
-		this.processMiddleware(0);
+	get(path: string) {
+		return (callback: (req: Request, res: Response) => Promise<void> | void) => {
+			this._middleware.push({ path, method: "GET", callback });
+			this.processMiddleware(0);
+		}
 	}
 
-	post(path: string, callback: (req: Request, res: Response) => Promise<void> | void): void {
-		this._middleware.push({ path, method: "POST", callback });
-		this.processMiddleware(0);
+	post(path: string) {
+		return (callback: (req: Request, res: Response) => Promise<void> | void) => {
+			this._middleware.push({ path, method: "POST", callback });
+			this.processMiddleware(0);
+		}
 	}
 
-	put(path: string, callback: (req: Request, res: Response) => Promise<void> | void): void {
-		this._middleware.push({ path, method: "PUT", callback });
-		this.processMiddleware(0);
+	put(path: string) {
+		return (callback: (req: Request, res: Response) => Promise<void> | void) => {
+			this._middleware.push({ path, method: "PUT", callback });
+			this.processMiddleware(0);
+		}
 	}
 
-	delete(path: string, callback: (req: Request, res: Response) => Promise<void> | void): void {
-		this._middleware.push({ path, method: "DELETE", callback });
-		this.processMiddleware(0);
+	delete(path: string) {
+		return (callback: (req: Request, res: Response) => Promise<void> | void) => {
+			this._middleware.push({ path, method: "DELETE", callback });
+			this.processMiddleware(0);
+		}
 	}
 
-	patch(path: string, callback: (req: Request, res: Response) => Promise<void> | void): void {
-		this._middleware.push({ path, method: "PATCH", callback });
-		this.processMiddleware(0);
+	patch(path: string) {
+		return (callback: (req: Request, res: Response) => Promise<void> | void) => {
+			this._middleware.push({ path, method: "PATCH", callback });
+			this.processMiddleware(0);
+		}
 	}
 }
 

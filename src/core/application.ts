@@ -100,4 +100,5 @@ class Application extends EventEmitter {
 	}
 }
 
+export { Application };
 export default Application;

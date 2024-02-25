@@ -19,4 +19,5 @@ declare class Application extends EventEmitter {
     delete(path: string, callback: (req: Request, res: Response) => Promise<void>): void;
     patch(path: string, callback: (req: Request, res: Response) => Promise<void>): void;
 }
+export { Application };
 export default Application;

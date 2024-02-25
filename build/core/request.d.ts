@@ -7,7 +7,7 @@ declare class Request {
     constructor(req?: IncomingMessage);
     get headers(): import("http").IncomingHttpHeaders;
     set headers(val: import("http").IncomingHttpHeaders);
-    get url(): string;
+    get url(): string | undefined;
     set method(val: string);
     get body(): Promise<any>;
     get path(): string;
@@ -19,4 +19,3 @@ declare class Request {
     set params(obj: any);
 }
 export default Request;
-//# sourceMappingURL=request.d.ts.map

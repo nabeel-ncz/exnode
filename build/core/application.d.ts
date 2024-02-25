@@ -20,4 +20,3 @@ declare class Application extends EventEmitter {
     patch(path: string, callback: (req: Request, res: Response) => Promise<void>): void;
 }
 export default Application;
-//# sourceMappingURL=application.d.ts.map

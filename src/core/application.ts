@@ -2,6 +2,7 @@ import * as http from "http";
 import Request from "./request";
 import Response from "./response";
 import { EventEmitter } from "events";
+import { rainbow_text } from "../utils";
 
 class Application extends EventEmitter {
 	private _middleware: {
@@ -17,14 +18,7 @@ class Application extends EventEmitter {
 		this._middleware = [];
 		this._request = Object.create(Request);
 		this._response = Object.create(Response);
-		console.log('\x1b[34;2m%s\x1b[0m', `▓█████ ▒██   ██▒ ███▄    █  ▒█████  ▓█████▄ ▓█████ `);
-		console.log('\x1b[34;2m%s\x1b[0m', `▓█   ▀ ▒▒██ ██▒░ ██ ▀█   █ ▒██▒  ██▒▒██▀ ██▌▓█   ▀ `);
-		console.log('\x1b[34;2m%s\x1b[0m', `▒███   ░░  █   ░▓██  ▀█ ██▒▒██░  ██▒░██   █▌▒███   `);
-		console.log('\x1b[34;2m%s\x1b[0m', `▒▓█  ▄  ░██ ██▒ ▓██▒  ▐▌██▒▒██   ██░░▓█▄ ██▌▒▓█  ▄ `);
-		console.log('\x1b[34;2m%s\x1b[0m', `░▒████▒▒██▒ ▒██▒▒██░   ▓██░░ ████▓▒░░█████▓ ░█████▒`);
-		console.log('\x1b[34;2m%s\x1b[0m', `░░ ▒░ ░▒▒ ░ ░▓ ░░ ▒░   ▒ ▒ ░ ▒░▒░▒░  ▒▒▓  ▒ ░░ ▒░ ░`);
-		console.log('\x1b[34;2m%s\x1b[0m', ` ░ ░  ░░░   ░▒ ░░ ░░   ░ ▒░  ░ ▒ ▒░  ░ ▒  ▒  ░ ░  ░`);
-		console.log('\x1b[34;2m%s\x1b[0m', ` ░    ░    ░     ░   ░ ░ ░ ░ ░ ▒   ░ ░  ░    ░    `);
+		console.log(`You are using ${rainbow_text("exnode")}@${process.env.npm_package_version}`);
 	}
 
 	use(...args: any[]): void {
